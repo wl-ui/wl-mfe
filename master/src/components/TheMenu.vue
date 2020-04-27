@@ -7,7 +7,7 @@
     :background-color="themeMenu.background"
     :active-text-color="themeMenu.active_text"
   >
-    <div class="the-menu-logo">{{is_collapse?'WL':'WL微前端项目'}}</div>
+    <div class="the-menu-logo">{{is_collapse?'WL2.0':'WL微前端项目2.0'}}</div>
     <el-submenu v-for="sub of menu" :key="sub.id" :index="sub.id">
       <template slot="title">
         <i class="menu-icon" :class="sub.icon"></i>
@@ -62,9 +62,12 @@ export default {
 </script>
 
 <style lang="scss">
+.the-menu:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
 .the-menu {
   height: 100%;
-  width: 200px;
   border-color: #2a3f54;
   .the-menu-logo {
     height: 60px;

@@ -2,22 +2,22 @@
 const appConfig = [
   {
     id: "1",
-    title: "wl-ui组件",
+    title: "wl-ui",
     icon: "el-icon-monitor",
     module: "subapp-ui",
     defaultRegister: true,
-    devEntry: "//localhost:6651",
+    devEntry: "//localhost:6751",
     depEntry: "http://ui.mfe.wlui.com.cn/",
     routerBase: "/ui",
     children: [
       {
         id: "1-1",
-        title: "表格",
+        title: "home",
         url: "/ui"
       },
       {
         id: "1-2",
-        title: "日历",
+        title: "about",
         url: "/ui/about"
       }
     ]
@@ -28,7 +28,7 @@ const appConfig = [
     icon: "el-icon-date",
     module: "subapp-blog",
     defaultRegister: false,
-    devEntry: "//localhost:6652",
+    devEntry: "//localhost:6752",
     depEntry: "http://blog.mfe.wlui.com.cn",
     routerBase: "/blog",
     children: [

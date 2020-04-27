@@ -1,4 +1,4 @@
-import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start } from "qiankun";
+import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from "qiankun";
 import store from "./store";
 // 导入render函数 兼容qiakun1.0装载子应用方法，如果使用2.0 container装载则不需要此方法,此处留着注释代码提供兼容qiankun1.0的示例
 // import render from './render';
@@ -108,3 +108,22 @@ const useQianKun = (list, defaultApp) => {
     console.log('[MainApp] first app mounted');
   });
 }
+
+/**
+ * @name 启动qiankun应用间通信机制
+ */
+const appStore = () => {
+  const { onGlobalStateChange, setGlobalState } = initGlobalState({
+    user: 'qiankun',
+  });
+
+  onGlobalStateChange((value, prev) => console.log('[onGlobalStateChange - master]:', value, prev));
+
+  setGlobalState({
+    ignore: 'master',
+    user: {
+      name: 'master',
+    },
+  });
+}
+appStore();
