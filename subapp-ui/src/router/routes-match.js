@@ -4,14 +4,18 @@
  * @param {*} base 路由前缀
  * @param {*} options 粗略的配置项
  */
-function routeMatch(data, base, options = { url: 'url', name: 'name', id: "id", permissions: 'permissions' }) {
+function routeMatch(
+  data,
+  base,
+  options = { url: "url", name: "name", id: "id", permissions: "permissions" }
+) {
   if (!Array.isArray(data)) return [];
   // 创建路由盒子
   let routerBox = [];
-  // 遍历处理路由 
+  // 遍历处理路由
   data.forEach(item => {
     if (!item[options.url]) return;
-    let _url = item[options.url].replace(base, '');
+    let _url = item[options.url].replace(base, "");
     try {
       let routerItem = {
         path: _url, // 路由路径名
@@ -19,16 +23,20 @@ function routeMatch(data, base, options = { url: 'url', name: 'name', id: "id", 
       };
       routerBox.push(routerItem);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   });
 
-  let errorBox = {
+  /**
+   * @error A non-empty path must start with "/"
+   * @des 添加错误路径重定向至404报错，需要以'/'开头
+   */
+  /* let errorBox = {
     path: "*",
     redirect: "/err-404"
   };
-  routerBox.push(errorBox)
+  routerBox.push(errorBox); */
   return routerBox;
 }
 
-export default routeMatch
+export default routeMatch;

@@ -1,20 +1,40 @@
 import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from "qiankun";
 import store from "./store";
-// 导入render函数 兼容qiakun1.0装载子应用方法，如果使用2.0 container装载则不需要此方法,此处留着注释代码提供兼容qiankun1.0的示例
+/**
+ * @name 导入render函数兼容qiakun1.0装载子应用方法，如果使用2.0container装载则不需要此方法,此处留着注释代码提供兼容qiankun1.0的示例
+ * @description 此处留下注释代码仅为提供兼容qiankun1.0示例
+ */
 // import render from './render';
-// 导入接口获取子应用注册表
+/**
+ * @name 导入接口获取子应用注册表
+ */
 import { getAppConfigsApi } from "./api/app-configs"
-// 导入消息组件
+/**
+ * @name 导入消息组件
+ */
 import { wlMessage } from './plugins/element';
-// 导入想传递给子应用的方法，其他类型的数据皆可按此方式传递
+/**
+ * @name 导入想传递给子应用的方法，其他类型的数据皆可按此方式传递
+ * @description emit建议主要为提供子应用调用主应用方法的途径
+ */
 import emits from "./utils/emit"
-
-// 声明子应用挂载dom，如果不需要做keep-alive，则只需要一个dom即可；
+/**
+ * @name 导入qiankun应用间通信机制appStore
+ */
+import appStore from './utils/app-store'
+/**
+ * @name 声明子应用挂载dom，如果不需要做keep-alive，则只需要一个dom即可；
+ */
 const appContainer = "#subapp-viewport";
-
-// 声明要传递给子应用的信息
+/**
+ * @name 声明要传递给子应用的信息
+ * @param data 主应要传递给子应用的数据类信息
+ * @param emits 主应要传递给子应用的方法类信息
+ * @param utils 主应要传递给子应用的工具类信息（只是一种方案）
+ * @param components 主应要传递给子应用的组件类信息（只是一种方案）
+ */
 let props = {
-  data: store.getters, // 从主应用仓库读出的数据
+  data: store.getters,
   emits
 }
 
@@ -112,18 +132,4 @@ const useQianKun = (list, defaultApp) => {
 /**
  * @name 启动qiankun应用间通信机制
  */
-const appStore = () => {
-  const { onGlobalStateChange, setGlobalState } = initGlobalState({
-    user: 'qiankun',
-  });
-
-  onGlobalStateChange((value, prev) => console.log('[onGlobalStateChange - master]:', value, prev));
-
-  setGlobalState({
-    ignore: 'master',
-    user: {
-      name: 'master',
-    },
-  });
-}
-appStore();
+appStore(initGlobalState);
