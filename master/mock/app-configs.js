@@ -34,13 +34,13 @@ const appConfig = [
     children: [
       {
         id: "2-1",
-        title: "报表",
+        title: "思否",
         url: "/blog"
       },
       {
         id: "2-2",
-        title: "穿梭框",
-        url: "/blog/about"
+        title: "掘金",
+        url: "/blog/juejin"
       }
     ]
   }
