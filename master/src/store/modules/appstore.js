@@ -1,6 +1,7 @@
 export default {
+  namespaced: true,
   state: {
-    msg: '今天天气很好'
+    msg: ""
   },
   mutations: {
     // 设置父应用信息
@@ -10,8 +11,8 @@ export default {
   },
   actions: {
     // 设置父应用信息
-    changeMsg({ commit }, data) {
-      commit('SET_MSG_VALUE', data)
+    setMsg({ commit }, data) {
+      commit("SET_MSG_VALUE", data);
     }
   }
-}
+};

@@ -8,6 +8,7 @@
         @click="setMenuCollapseStatus()"
       ></i>
     </div>
+    <div class="pager-msg">广播：{{subappMsg}}</div>
     <!-- 右侧操作区 -->
     <div class="nav-handle-box">
       <!-- 消息按钮 -->
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "theNav",
   data() {
@@ -34,7 +36,8 @@ export default {
   computed: {
     isCollapse() {
       return this.$store.getters.is_collapse;
-    }
+    },
+    ...mapGetters({ subappMsg: "msg" })
   },
   methods: {
     // 设置左侧菜单折叠状态
@@ -97,6 +100,11 @@ export default {
 
   .nav-handle-item + .nav-handle-item {
     margin-left: 12px;
+  }
+
+  .pager-msg {
+    font-weight: 600;
+    font-size: 16px;
   }
 }
 </style>

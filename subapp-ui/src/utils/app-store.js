@@ -23,6 +23,9 @@ const appStore = props => {
     },
     true
   );
+  /**
+   * @name 改变并全局广播新消息
+   */
   props?.setGlobalState?.({
     ignore: props.name,
     msg: `来自${props.name}动态设定的消息`,

@@ -1,3 +1,5 @@
+import store from "@/store";
+
 /**
  * @name 启动qiankun应用间通信机制
  * @param {Function} initGlobalState 官方通信函数
@@ -5,12 +7,26 @@
  * @description 注意：子应用是附加在props上的onGlobalStateChange, setGlobalState方法（只用主应用注册了通信才会有）
  */
 const appStore = (initGlobalState) => {
+  /**
+   * @name 初始化数据内容
+   */
   const { onGlobalStateChange, setGlobalState } = initGlobalState({
     msg: '来自master初始化的消息',
   });
 
-  onGlobalStateChange((value, prev) => console.log('[onGlobalStateChange - master]:', value, prev));
+  /**
+   * @name 监听数据变动
+   * @param {Function} 监听到数据发生改变后的回调函数
+   * @des 将监听到的数据存入vuex
+   */
+  onGlobalStateChange((value, prev) => { 
+    console.log('[onGlobalStateChange - master]:', value, prev);
+    store.dispatch('appstore/setMsg', value.msg)
+  });
 
+  /**
+   * @name 改变数据并向所有应用广播
+   */
   setGlobalState({
     ignore: 'master',
     msg: '来自master动态设定的消息',
