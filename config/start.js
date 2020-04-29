@@ -19,7 +19,7 @@ function start() {
     console.log(i, 'success', stdout)
     console.error(i, 'error', stderr)
   });
-  exec('start http://localhost:6650/');
+  exec('start http://localhost:6750/');
 };
 start();
 
