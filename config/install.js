@@ -12,10 +12,13 @@ const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^subapp|master/.test(i
 console.log(`即将进入所有模块并下载依赖：${JSON.stringify(sub_apps)} ing... 批量下载所有项目依赖推荐使用 npm run cinit`)
 
 const exec = util.promisify(require('child_process').exec);
+// npm 源
+let registry = process.argv.length === 3 ? 'cnpm install' : 'npm install';
+
 function install() {
   sub_apps.forEach(async i => {
     console.log(`${i} 开始下载，耗时较久请耐心等待...`)
-    const { stdout, stderr } = await exec('npm install', { cwd: path.resolve(i) });
+    const { stdout, stderr } = await exec(registry, { cwd: path.resolve(i) });
     console.log(i, 'success', stdout)
     console.error(i, 'error', stderr)
   });

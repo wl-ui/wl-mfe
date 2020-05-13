@@ -2,6 +2,13 @@
  *  auth: weilan
  *  读取文件夹并运行服务
  */
+/* let port = 8080;
+try {
+  const masterConfig = require('../master/vue.config');
+  port = masterConfig.devServer.port
+} catch (err) {
+  port = 8080;
+} */
 
 const fs = require('fs');
 const path = require('path');
