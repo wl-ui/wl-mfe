@@ -1,12 +1,23 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">思否</router-link>|
-      <router-link to="/juejin">掘金</router-link>
+      <span @click="routerReplace('/')">思否</span>|
+      <span @click="routerReplace('/juejin')">掘金</span>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: "app",
+  methods: {
+    routerReplace(url) {
+      this.$router.replace(url);
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 #app {

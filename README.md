@@ -725,6 +725,9 @@ export default {
 到这里已经完成了一个简单使用的 vue3.0 + qiankun2.0 微前端应用实践，快来上手试试吧！
 项目地址：[Github](https://github.com/wl-ui/wl-mfe);
 
+## 注意事项
+1. 在主应用中使用window.history.pushState();跳转，在vue子应用中，使用router-link跳转会报错；使用router.push()会造成刷新；使用router.replace无异常
+
 ## 友情链接
 
 ### 微前端 & qiankun
