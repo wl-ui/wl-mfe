@@ -1,5 +1,5 @@
 
-const port = 6750; // dev port
+const { port } = require("./package");
 
 module.exports = {
   // publicPath: './',

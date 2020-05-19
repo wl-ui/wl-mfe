@@ -16,6 +16,11 @@ const util = require('util');
 const sub_app_ath = path.resolve();
 const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^subapp|master/.test(i));
 
+if (!fs.existsSync('master/package.json')) {
+  console.log('缺少master目录package.json文件！')
+  return false;
+}
+
 console.log(`即将进入所有模块并启动服务：${JSON.stringify(sub_apps)} ing...`)
 
 const exec = util.promisify(require('child_process').exec);
@@ -26,7 +31,9 @@ function start() {
     console.log(i, 'success', stdout)
     console.error(i, 'error', stderr)
   });
-  exec('start http://localhost:6750/');
+  const data = fs.readFileSync('master/package.json').toString();
+  const json = JSON.parse(data) || { port: 8080 };
+  exec('start http://localhost:' + json.port);
 };
 start();
 
