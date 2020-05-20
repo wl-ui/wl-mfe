@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "使用koa2提供简单node服务",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "weilan",
+  "license": "ISC",
+  "dependencies": {
+    "http-proxy-middleware": "^1.0.4",
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8",
+    "koa2-cors": "^2.0.6"
+  }
+}

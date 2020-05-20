@@ -16,7 +16,10 @@ import emits from "../utils/emit"
  * @name 导入qiankun应用间通信机制appStore
  */
 import appStore from '../utils/app-store'
-
+/**
+ * @name 导入封装的请求类传递给子应用
+ */
+import http from "../api/__http__"
 /**
  * @name 声明子应用挂载dom，如果不需要做keep-alive，则只需要一个dom即可；
  */
@@ -26,12 +29,14 @@ const appContainer = "#subapp-viewport";
  * @name 声明要传递给子应用的信息
  * @param data 主应要传递给子应用的数据类信息
  * @param emits 主应要传递给子应用的方法类信息
+ * @param http 主应要传递给子应用的请求类
  * @param utils 主应要传递给子应用的工具类信息（只是一种方案）
  * @param components 主应要传递给子应用的组件类信息（只是一种方案）
  */
 let props = {
   data: store.getters,
-  emits
+  emits,
+  http
 }
 
 /**

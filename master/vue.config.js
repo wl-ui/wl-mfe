@@ -14,6 +14,15 @@ module.exports = {
     },
     headers: {
       'Access-Control-Allow-Origin': '*',
+    },
+    proxy: {
+      "/Bing": {
+        target: "https://cn.bing.com/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/Bing": ""
+        }
+      },
     }
   },
   css: {

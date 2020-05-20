@@ -6,18 +6,32 @@
 </template>
 
 <script>
+import { getBingHpImageApi } from "@/api/login.js";
+
 export default {
-  name: "Home",
-  components: {}
+  name: "login-page",
+  components: {},
+  data() {
+    return {
+      bgImageList: [] // 背景图
+    };
+  },
+  created() {
+    this.getBingHpImage();
+  },
+  methods: {
+    // 获取背景图壁纸
+    getBingHpImage() {
+      const _default_bingimg_params = {
+        format: "js",
+        idx: 0,
+        n: 8,
+        mkt: "zh-CN"
+      };
+      getBingHpImageApi(_default_bingimg_params).then(({ data }) => {
+        this.bgImageList = data?.images || [];
+      });
+    }
+  }
 };
-
-
-const supMe = (list, hasHide) => {
-  return Array.isArray(list) ? { 啥啥啥 } : {};
-};
-
-let data = {...e, ...supMe(e.children)}
-
-aaa.push(data)
-
 </script>

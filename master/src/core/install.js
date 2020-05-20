@@ -11,4 +11,4 @@ import "../plugins/install"
 import '../assets/css/install'
 
 // 注册mock服务
-import '../../mock/install'
+// import '../../mock/install'

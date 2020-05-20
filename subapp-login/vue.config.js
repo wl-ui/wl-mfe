@@ -4,7 +4,6 @@ const { name, port } = require("./package");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-
 const dev = process.env.NODE_ENV === "development";
 module.exports = {
   /**
@@ -31,6 +30,15 @@ module.exports = {
     },
     headers: {
       "Access-Control-Allow-Origin": "*"
+    },
+    proxy: {
+      "/Bing": {
+        target: "https://cn.bing.com/",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/Bing": ""
+        }
+      },
     }
   },
   // 自定义webpack配置
