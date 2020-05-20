@@ -1,22 +1,27 @@
 <template>
   <div id="root" class="main-container">
-    <!-- 左侧菜单区 -->
-    <the-menu class="main-menu-box" />
-    <!-- 右侧视图 -->
-    <div class="main-container-content">
-      <!-- 上部导航区 -->
-      <the-nav />
-      <!-- 子应用渲染区 -->
-      <div class="main-container-view">
-        <el-scrollbar class="wl-scroll">
-          <!-- qiankun2.0  container 模式-->
-          <div id="subapp-viewport" class="app-view-box"></div>
-          <!-- qiankun1.0  render 模式-->
-          <div v-html="appContent" class="app-view-box"></div>
-          <div v-if="loading" class="subapp-loading"></div>
-        </el-scrollbar>
+    <!-- 登陆后视图 -->
+    <template v-if="hasToken">
+      <!-- 左侧菜单区 -->
+      <the-menu class="main-menu-box" />
+      <!-- 右侧视图 -->
+      <div class="main-container-content">
+        <!-- 上部导航区 -->
+        <the-nav />
+        <!-- 子应用渲染区 -->
+        <div class="main-container-view">
+          <el-scrollbar class="wl-scroll">
+            <!-- qiankun2.0  container 模式-->
+            <div id="subapp-viewport" class="app-view-box"></div>
+            <!-- qiankun1.0  render 模式-->
+            <div v-html="appContent" class="app-view-box"></div>
+            <div v-if="loading" class="subapp-loading"></div>
+          </el-scrollbar>
+        </div>
       </div>
-    </div>
+    </template>
+    <!-- 非登录视图 -->
+    <div v-else id="subapp-viewport" class="app-view-box"></div>
   </div>
 </template>
 
@@ -33,6 +38,11 @@ export default {
   props: {
     loading: Boolean,
     appContent: String
+  },
+  computed: {
+    hasToken() {
+      return !!this.$store.getters.token;
+    }
   }
 };
 </script>

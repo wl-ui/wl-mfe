@@ -1,7 +1,7 @@
 /**
  * @name 统一注册外部插件、样式、服务等
  */
-import './install'
+import './core/install'
 
 /**
  * @name 微前端基座主应用vue实例化
@@ -12,10 +12,11 @@ import './install'
  */
 /* import render from './render';
 render({ loading: true }) */
-import { vueRender } from './render'
+import { vueRender } from './core/render'
 vueRender({}, true)
 
 /**
- * @name 注册微应用并启动微前端
+ * @name 验证登陆身份并启动微应用
  */
-import './appRegister'
+import microAppStart from './core/auth'
+microAppStart()

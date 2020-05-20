@@ -1,5 +1,5 @@
 
-const appConfig = [
+const subApps = [
   {
     id: "1",
     title: "wl-ui",
@@ -52,7 +52,7 @@ export default [
     response: () => {
       return {
         code: 200,
-        data: appConfig
+        data: subApps
       }
     }
   },

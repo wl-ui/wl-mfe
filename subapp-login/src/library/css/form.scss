@@ -1,0 +1,43 @@
+// 表单统一样式文件
+.materia-handling {
+  .form-width-n {
+    width: 120px;
+  }
+  .form-width-s {
+    width: 140px;
+  }
+  .form-width-m {
+    width: 160px;
+  }
+  .form-width-l {
+    width: 180px;
+  }
+  .form-width-xl {
+    width: 200px;
+  }
+  .form-width-xxl {
+    width: 230px;
+  }
+  .form-width-xxxl {
+    width: 260px;
+  }
+
+  .form-height-n {
+    height: 28px;
+  }
+  .form-height-s {
+    height: 32px;
+  }
+  .form-height-m {
+    height: 36px;
+  }
+  .form-height-l {
+    height: 40px;
+  }
+}
+
+.form-header-margin {
+  .el-form-item {
+    margin-bottom: $space-s;
+  }
+}

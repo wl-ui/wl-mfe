@@ -1,7 +1,7 @@
 import Vue from "vue"
-import router from './router'
-import store from './store'
-import App from './App.vue'
+import router from '../router'
+import store from '../store'
+import App from '../App.vue'
 
 /**
  * @description 实例化vue，并提供子应用 render函数模式的装载能力

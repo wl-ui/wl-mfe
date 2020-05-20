@@ -1,0 +1,95 @@
+.color-blue {
+  color: #409eff;
+  cursor: pointer;
+}
+
+.color-red {
+  color: #f56c6c;
+  cursor: pointer;
+}
+
+.background-blue {
+  background: #409eff;
+}
+
+.color-success {
+  color: #67c23a;
+  &:hover {
+    color: #67c23a;
+  }
+}
+
+.background-success {
+  background: #67c23a;
+}
+
+.color-warning {
+  color: #e6a23c;
+  &:hover {
+    color: #e6a23c;
+  }
+}
+
+.background-warning {
+  background: #e6a23c;
+}
+
+.color-danger {
+  color: #f56c6c;
+  &:hover {
+    color: #f56c6c;
+  }
+}
+
+.background-danger {
+  background: #f56c6c;
+}
+
+.color-info,
+.color-999 {
+  color: #909399;
+}
+
+.background-info {
+  background: #909399;
+}
+
+.color-333 {
+  color: #303133;
+}
+
+.color-666 {
+  color: #606266;
+}
+
+.color-ccc {
+  color: #c0c4cc;
+}
+
+.border-color-ddd {
+  border-color: $border-color-ddd;
+}
+
+.border-color-eee {
+  border-color: $border-color-eee;
+}
+
+.border-color-fff {
+  border-color: $border-color-fff;
+}
+
+.border {
+  border: 1px solid $border-color-eee;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.vertical-middle {
+  vertical-align: middle;
+}
+
+.align-right {
+  text-align: right;
+}

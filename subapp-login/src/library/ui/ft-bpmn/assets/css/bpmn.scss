@@ -1,0 +1,165 @@
+$primary-color: #409EFF;
+$primary-background-color: #ecf5ff;
+
+*, :after, :before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.fa-icon{
+  width: auto;
+  height: 1em; /* 或任意其它字体大小相对值 */
+
+  /* 要在 Safari 中正常工作，需要再引入如下两行代码 */
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+.fm2-container{
+  background: #fff;
+  //height: 100%;
+  height: 100vh;
+  border: 1px solid #e0e0e0;
+
+
+  .el-container{
+    height: 100% !important;
+  }
+
+  &>.el-container{
+    background: #fff;
+  }
+  .fm2-main{
+    position: relative;
+
+    &>.el-container{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+  main{
+    padding: 0;
+  }
+
+  footer{
+    height: 30px;
+    line-height: 30px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 12px;
+    text-align: right;
+    color: $primary-color;
+    background: #fafafa;
+    a{
+      color: $primary-color;
+    }
+  }
+}
+
+.center-container{
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+
+  .btn-bar{
+    height: 45px;
+    //line-height: 45px;
+    font-size: 18px;
+    border-bottom: solid 2px #e4e7ed;
+    text-align: right;
+    .el-button {
+      height: 45px;
+    }
+  }
+
+  .el-main{
+    padding: 0;
+    position: relative;
+    background: #fafafa;
+  }
+}
+
+.widget-config-container{
+  position: relative;
+
+  .el-header{
+    border-bottom: solid 2px #e4e7ed;
+    padding: 0 5px;
+  }
+
+  .config-tab{
+    height: 45px;
+    line-height: 45px;
+    display: inline-block;
+    width: 145px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    cursor: pointer;
+
+    &.active{
+      border-bottom: solid 2px $primary-color;
+    }
+  }
+
+  .config-content{
+    padding: 10px;
+
+    .el-form-item__label{
+      padding: 0;
+      font-weight: 500;
+    }
+
+    .el-form-item {
+      border-bottom: solid 1px #e1e1e1;
+      padding-bottom: 10px;
+    }
+  }
+
+  .ghost{
+    background: #fff;
+    border: 1px dashed $primary-color;
+
+    &::after{
+      background: #fff;
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+  }
+
+  li.ghost{
+    list-style: none;
+    font-size: 0;
+    display: block;
+    position: relative;
+  }
+}
+
+//.viewer-container{
+//  z-index: 99999 !important;
+//}
+//
+//.form-empty{
+//  position: absolute;
+//  text-align: center;
+//  width: 300px;
+//  font-size: 20px;
+//  top: 200px;
+//  left: 50%;
+//  margin-left: -150px;
+//  color: #ccc;
+//}
