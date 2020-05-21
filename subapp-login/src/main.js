@@ -1,6 +1,10 @@
 import "./public-path";
 import { lifeCycle, render } from "./life-cycle";
 
+import Vue from 'vue';
+import VueCompositionApi from '@vue/composition-api';
+Vue.use(VueCompositionApi);
+
 /**
  * @name 导出微应用生命周期
  */
