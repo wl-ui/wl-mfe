@@ -22,6 +22,13 @@ function install() {
     console.log(i, 'success', stdout)
     console.error(i, 'error', stderr)
   });
+  // 如果是本地node假设服务则下载本地serve服务依赖
+  if (fs.existsSync('_server/package.json')) {
+    console.log(`本地_server服务 开始下载，耗时较久请耐心等待...`)
+    const { stdout, stderr } = exec(registry, { cwd: path.resolve('_server') });
+    console.log('_server服务', 'success', stdout)
+    console.error('_server服务', 'error', stderr)
+  }
 };
 install()
 

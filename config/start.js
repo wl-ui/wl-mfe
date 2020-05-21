@@ -31,6 +31,11 @@ function start() {
     console.log(`${i} 开始启动... 全部启动需要时间，请稍加等候，或刷新浏览器即可`)
     await exec('npm run serve', { cwd: path.resolve(i), maxBuffer: maxBufferLength });
   });
+  // 如果是本地node假设服务则开启本地serve服务
+  if (fs.existsSync('_server/package.json')) {
+    exec('npm run serve', { cwd: path.resolve('_server'), maxBuffer: maxBufferLength });
+    console.log(`本地node服务已启动，默认端口3000`)
+  }
   const data = fs.readFileSync('master/package.json').toString();
   const json = JSON.parse(data) || { port: 8080 };
   exec('start http://localhost:' + json.port);
