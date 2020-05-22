@@ -109,5 +109,3 @@ const qianKunStart = (list) => {
 }
 
 export default qianKunStart;
-
-

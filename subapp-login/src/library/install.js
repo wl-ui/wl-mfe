@@ -1,12 +1,21 @@
 
+/**
+ * @name 导入插件
+ */
 import FtUi from "./ui/index"; // 导入ui
+import VueClipboard from 'vue-clipboard2';
+/**
+ * @name 导入方法
+ */
 import * as FUNCONVUE from "./js/func-mounted-on-vue" // 导入需要挂载在vue上的方法
 import * as TOOL from "./js/tool.js"
 import * as STORAGE from "./js/storage.js"
 import * as VALIDATOR from "./js/validator.js"
-import VueClipboard from 'vue-clipboard2';
 import directives from "./js/directives"; // 添加全局指令
-// import "./js/descriptors"; // 添加全局装饰器
+/**
+ * @name 导入样式
+ */
+import './css/install.scss'
 
 /**
  * library挂载vue实例函数

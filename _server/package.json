@@ -11,7 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "http-proxy-middleware": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.0",
     "koa-router": "^8.0.8",
     "koa2-cors": "^2.0.6"
   }

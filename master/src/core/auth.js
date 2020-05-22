@@ -50,7 +50,9 @@ const getAppConfigs = () => {
     }
     // 处理菜单状态共享
     store.dispatch('menu/setMenu', _res);
-    // 启用qiankun微前端应用
+    /**
+     * @name 启用qiankun微前端应用，已启动过用手动加载，未启动过正常注册
+     */
     qianKunStart(_res);
   })
 }

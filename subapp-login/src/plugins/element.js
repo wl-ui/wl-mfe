@@ -1,5 +1,5 @@
 import { DataType } from "wl-core"
-import { Button, Menu, Submenu,Input, MenuItem, MenuItemGroup, Scrollbar, Loading, Message, MessageBox } from "element-ui";
+import { Button, Menu, Submenu, Input, MenuItem, MenuItemGroup, Scrollbar, Loading, Message, MessageBox, Form, FormItem } from "element-ui";
 
 /**
  * message方法 默认可关闭
@@ -35,7 +35,7 @@ export function wlConfirm(message, title = "提示", options = {}) {
 
 export default {
   components: [
-    Button, Menu, Submenu, MenuItem, MenuItemGroup, Scrollbar,Input
+    Button, Menu, Submenu, MenuItem, MenuItemGroup, Scrollbar, Input, Form, FormItem
   ],
   serve: [Loading],
   methods: [wlMessage, wlConfirm]

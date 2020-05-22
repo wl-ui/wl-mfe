@@ -18,13 +18,15 @@
       <!-- 用户名 -->
       <span class="nav-handle-item nav-user-name">{{user_name}}</span>
       <!-- 退出登录按钮 -->
-      <i class="nav-icon nav-handle-item el-icon-switch-button"></i>
+      <i class="nav-icon nav-handle-item el-icon-switch-button" @click="logOut()"></i>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import { Storage } from "wl-core";
+
 export default {
   name: "theNav",
   data() {
@@ -73,6 +75,11 @@ export default {
     // 暂未开通，敬请期待
     notYetOpened() {
       this.$message({});
+    },
+    // 退出登录
+    logOut() {
+      Storage.remove("token");
+      location.reload();
     }
   }
 };

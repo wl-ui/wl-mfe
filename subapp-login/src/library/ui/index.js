@@ -7,12 +7,11 @@ import FtTable from "./ft-table/";
 import FtScroll from "./ft-scroll/";
 import FtAdd from "./ft-add/";
 import FtFadein from "./ft-fadein/";
-import FtTree from "./ft-tree/";
 import FtTableReport from "./ft-table-report/";
 import FtInput from "./ft-input/";
 import FtVatable from "./ft-vatable/";
 
-const components = [FtButton, FtContainer, FtBpmn, FtContextmenu, FtTable, FtScroll, FtAdd, FtFadein, FtTree, FtTableReport, FtInput, FtVatable];
+const components = [FtButton, FtContainer, FtBpmn, FtContextmenu, FtTable, FtScroll, FtAdd, FtFadein, FtTableReport, FtInput, FtVatable];
 
 
 const install = function (Vue) {
@@ -34,7 +33,6 @@ export default {
   FtScroll,
   FtAdd,
   FtFadein,
-  FtTree,
   FtTableReport,
   FtInput,
   FtVatable

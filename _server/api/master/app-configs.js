@@ -5,7 +5,6 @@ const data = require("../../data/app-configs")
 
 router.get('/Api/GetAppConfigs', async (ctx, next) => {
   await next();
-
   let _res = {
     message: '请求成功',
     code: 200,

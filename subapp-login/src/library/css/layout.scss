@@ -1,34 +1,32 @@
 // 布局类统一样式
 
-.materia-handling {
-  .margin-bottom-n {
-    margin-bottom: $space-n;
-  }
-  .margin-bottom-s {
-    margin-bottom: $space-s;
-  }
-  .margin-bottom-m {
-    margin-bottom: $space-m;
-  }
-  .margin-bottom-l {
-    margin-bottom: $space-l;
-  }
-  .margin-bottom-xl {
-    margin-bottom: $space-xl;
-  }
+.margin-bottom-n {
+  margin-bottom: $space-n;
+}
+.margin-bottom-s {
+  margin-bottom: $space-s;
+}
+.margin-bottom-m {
+  margin-bottom: $space-m;
+}
+.margin-bottom-l {
+  margin-bottom: $space-l;
+}
+.margin-bottom-xl {
+  margin-bottom: $space-xl;
+}
 
-  .padding-s {
-    padding: $space-s;
-  }
+.padding-s {
+  padding: $space-s;
+}
 
-  // 充满宽度
-  .width-full {
-    width: 100%;
-  }
-  // 充满高度
-  .height-full {
-    height: 100%;
-  }
+// 充满宽度
+.width-full {
+  width: 100%;
+}
+// 充满高度
+.height-full {
+  height: 100%;
 }
 
 .el-scroll-full {
