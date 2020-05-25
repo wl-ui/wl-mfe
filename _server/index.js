@@ -26,5 +26,7 @@ app.use(bodyParser());
   path: [/^\/Api\/Login/] //数组中的路径不需要通过jwt验证
 })) */
 
+// 注册路由
 app.use(routes.routes(), routes.allowedMethods());
+// 监听端口
 app.listen(3000)
