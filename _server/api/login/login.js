@@ -12,8 +12,7 @@ router.post('/Api/Login', async (ctx, next) => {
       account: userInfo.account
     }
     const token = jwt.sign(userToken, tokenKey, { expiresIn: '24h' })  //token签名 有效期为1小时
-    ctx.set('authorization', token);
-    ctx.set("Access-Control-Expose-Headers", "authorization");
+    ctx.set({ 'authorization': token, "Access-Control-Expose-Headers": "authorization" });
     ctx.body = {
       message: '请求成功',
       code: 200
