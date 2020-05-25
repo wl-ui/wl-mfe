@@ -2,7 +2,7 @@
   "name": "subapp-login",
   "author": "weilan",
   "description": "登陆子应用",
-  "port": "6753",
+  "port": 2753,
   "version": "0.1.0",
   "private": true,
   "scripts": {

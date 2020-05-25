@@ -1,6 +1,6 @@
 {
   "name": "master",
-  "port": 6750,
+  "port": 2750,
   "version": "0.1.0",
   "private": true,
   "scripts": {

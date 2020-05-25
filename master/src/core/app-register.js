@@ -56,7 +56,7 @@ const qianKunStart = (list) => {
       entry: isDev ? i.devEntry : i.depEntry,
       container: appContainer,
       activeRule: i.routerBase,
-      props: { ...props, routes: i.children, routerBase: i.routerBase }
+      props: { ...props, routes: i.data, routerBase: i.routerBase }
     })
     if (i.defaultRegister) defaultApp = i.routerBase;
   });

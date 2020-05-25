@@ -6,19 +6,23 @@
 
 const noAuthApps = [
   {
-    id: "1",
-    title: "login",
-    icon: "el-icon-monitor",
     module: "subapp-login",
     defaultRegister: true,
     devEntry: "//localhost:6753",
     depEntry: "http://login.mfe.wlui.com.cn/",
     routerBase: "/login",
-    children: [
+    data: [
       {
-        id: "1-1",
-        title: "home",
-        url: "/login"
+        id: "1",
+        title: "login",
+        icon: "el-icon-monitor",
+        children: [
+          {
+            id: "1-1",
+            title: "home",
+            url: "/login"
+          }
+        ]
       }
     ]
   },

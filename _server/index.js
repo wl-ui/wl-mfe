@@ -29,4 +29,4 @@ app.use(bodyParser());
 // 注册路由
 app.use(routes.routes(), routes.allowedMethods());
 // 监听端口
-app.listen(3000)
+app.listen(3700)

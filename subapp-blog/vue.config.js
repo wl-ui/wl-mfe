@@ -1,11 +1,10 @@
 const path = require("path");
-const { name } = require("./package");
+const { name, port } = require("./package");
 
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const port = 6752; // dev port
 const dev = process.env.NODE_ENV === "development";
 module.exports = {
   /**

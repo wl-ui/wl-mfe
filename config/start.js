@@ -34,7 +34,7 @@ function start() {
   // 如果是本地node假设服务则开启本地serve服务
   if (fs.existsSync('_server/package.json')) {
     exec('npm run serve', { cwd: path.resolve('_server'), maxBuffer: maxBufferLength });
-    console.log(`本地node服务已启动，默认端口3000`)
+    console.log(`本地node服务已启动，默认端口3700`)
   }
   const data = fs.readFileSync('master/package.json').toString();
   const json = JSON.parse(data) || { port: 8080 };
