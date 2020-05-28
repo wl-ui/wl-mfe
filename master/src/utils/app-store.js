@@ -2,7 +2,6 @@ import store from "@/store";
 /**
  * @name 导入注册并启动微应用函数
  */
-import microAppStart from '@/core/auth'
 
 /**
  * @name 启动qiankun应用间通信机制
@@ -29,7 +28,7 @@ const appStore = (initGlobalState) => {
     console.log('[onGlobalStateChange - master]:', value, prev);
     'msg' in value && store.dispatch('appstore/setMsg', value.msg);
     value.token && store.dispatch('app/setToken', value.token);
-    value.appsRefresh && microAppStart();
+    value.appsRefresh && window?.location?.reload?.();
   });
 
   /**

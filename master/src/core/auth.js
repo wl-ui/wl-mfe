@@ -49,7 +49,7 @@ const getAppConfigs = () => {
       })
       return;
     }
-    
+
     // 处理菜单状态共享
     let _menu = [];
     _res.forEach(i => {

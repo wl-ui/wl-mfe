@@ -27,7 +27,6 @@
 import { reactive, ref, getCurrentInstance } from "@vue/composition-api"; // 导入vue3api
 import { DataType, Storage } from "wl-core"; // 导入核心工具库
 import { getBingHpImageApi, loginApi } from "@/api/login.js"; // 导入接口
-// import { setState } from "@/utils/app-store"; // 导入应用间通信函数
 
 export default {
   name: "login-page",
@@ -149,9 +148,7 @@ const loginSubmit = data => {
 const loginedTodo = token => {
   // 将token存入本地
   Storage.set("token", token);
-  location.reload();
-  // setState({ token, appsRefresh: true });
-
+  window?.location?.reload?.();
 };
 </script>
 
