@@ -5,6 +5,7 @@
     "scripts": {
         "init": "node config/install.js",
         "cinit": "node config/install.js cnpm",
+        "yinit": "node config/install.js yarn",
         "serve": "node config/start.js",
         "build": "node config/build.js",
         "lint": "vue-cli-service lint"

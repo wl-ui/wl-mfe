@@ -14,12 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const sub_app_ath = path.resolve();
-const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^subapp|master/.test(i));
-
-if (!fs.existsSync('master/package.json')) {
-  console.log('缺少master目录package.json文件！')
-  return false;
-}
+const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|master|subapp/.test(i));
 
 console.log(`即将进入所有模块并启动服务：${JSON.stringify(sub_apps)} ing...`)
 
@@ -28,17 +23,22 @@ const maxBufferLength = 2000 * 1024;
 
 function start() {
   sub_apps.forEach(async i => {
-    console.log(`${i} 开始启动... 全部启动需要时间，请稍加等候，或刷新浏览器即可`)
+    if (!fs.existsSync(`${i}/package.json`)) {
+      console.log(`${i} 应用缺少package.json文件，将跳过此应用`)
+      return false;
+    }
+    if (!fs.existsSync(`${i}/node_modules`)) {
+      console.log(`${i} 应用未检测到node_modules目录，将跳过此应用`)
+      return;
+    }
+    let packageJson = fs.readFileSync(`${i}/package.json`).toString();
+    let packageData = JSON.parse(packageJson);
+    console.log(`${i} 开始启动... 端口：${packageData.port} 全部启动需要时间，请稍加等候，或刷新浏览器即可`)
     await exec('npm run serve', { cwd: path.resolve(i), maxBuffer: maxBufferLength });
   });
-  // 如果是本地node假设服务则开启本地serve服务
-  if (fs.existsSync('_server/package.json')) {
-    exec('npm run serve', { cwd: path.resolve('_server'), maxBuffer: maxBufferLength });
-    console.log(`本地node服务已启动，默认端口3700`)
-  }
-  const data = fs.readFileSync('master/package.json').toString();
-  const json = JSON.parse(data) || { port: 8080 };
-  exec('start http://localhost:' + json.port);
+  const packageJson = fs.readFileSync('master/package.json').toString();
+  const packageData = JSON.parse(packageJson);
+  exec('start http://localhost:' + packageData.port);
 };
 start();
 

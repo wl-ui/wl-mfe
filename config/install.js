@@ -7,28 +7,30 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const sub_app_ath = path.resolve();
-const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^subapp|master/.test(i));
+const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|master|subapp/.test(i));
 
-console.log(`即将进入所有模块并下载依赖：${JSON.stringify(sub_apps)} ing... 批量下载所有项目依赖推荐使用 npm run cinit`)
+console.log(`即将进入所有模块并下载依赖：${JSON.stringify(sub_apps)} ing... 批量下载所有项目依赖推荐使用 npm run cinit 或 npm run yinit`)
 
 const exec = util.promisify(require('child_process').exec);
 // npm 源
-let registry = process.argv.length === 3 ? 'cnpm install' : 'npm install';
+const registry = process.argv[2];
+let registry_script = registry === 'cnpm' ? 'cnpm install' : registry === 'yarn' ? 'yarn install' : 'npm install'
 
 function install() {
   sub_apps.forEach(async i => {
+    if (!fs.existsSync(`${i}/package.json`)) {
+      console.log(`${i} 应用缺少package.json文件，将跳过此应用`)
+      return false;
+    }
+    if (fs.existsSync(`${i}/node_modules`)) {
+      console.log(`${i} 应用已检测到node_modules目录，将跳过此应用`)
+      return false;
+    }
     console.log(`${i} 开始下载，耗时较久请耐心等待...`)
-    const { stdout, stderr } = await exec(registry, { cwd: path.resolve(i) });
+    const { stdout, stderr } = await exec(registry_script, { cwd: path.resolve(i) });
     console.log(i, 'success', stdout)
     console.error(i, 'error', stderr)
   });
-  // 如果是本地node假设服务则下载本地serve服务依赖
-  if (fs.existsSync('_server/package.json')) {
-    console.log(`本地_server服务 开始下载，耗时较久请耐心等待...`)
-    const { stdout, stderr } = exec(registry, { cwd: path.resolve('_server') });
-    console.log('_server服务', 'success', stdout)
-    console.error('_server服务', 'error', stderr)
-  }
 };
 install()
 

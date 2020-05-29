@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "使用koa2提供简单node服务",
+  "port": 3700,
   "main": "index.js",
   "scripts": {
     "serve": "node index.js",
