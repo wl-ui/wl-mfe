@@ -6801,10 +6801,10 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qiankun@^2.0.8:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.0.11.tgz#8665cf5a0b5c72d09c262f0838f9b8075cb86ec8"
-  integrity sha512-MXYLIv5g3o6/2TuWDEcL9xa3Zl+BTjzxrE2cNY4eiIKwkiAgqdl7/A144Q10dEgCPBJsSvrrsJJl0sSirOVmZQ==
+qiankun@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.0.15.tgz#61a452080f9d31d404c2e40e23500bd3189d0038"
+  integrity sha512-raFoqwJpZvozd7S1oyYOLsgvnpFtH9xLQff5U67yD1TtvLgMOBp9uYrpN0q682+WBPZ7x3TWYoKTQG+IAXLcEg==
   dependencies:
     "@babel/runtime" "^7.5.5"
     import-html-entry "^1.7.0"
@@ -8740,10 +8740,18 @@ wide-align@^1.1.0:
   dependencies:
     string-width "^1.0.2 || 2"
 
-wl-core@^1.0.0, wl-core@^1.0.6:
+wl-core@^1.0.0:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/wl-core/-/wl-core-1.0.9.tgz#9383c70704dd6fa41c46022d7cc4cbc3dd34f679"
   integrity sha512-+FTMsnq+FnH9lgYgHRUDLUKAFJdlWbjwXonfv2N+CMr6AmNj3lNVJOgW4DGc/AISUOLQhvUBd3prGPU72Lxv0A==
+  dependencies:
+    big.js "^5.2.2"
+    dayjs "^1.8.25"
+
+wl-core@^1.0.9:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/wl-core/-/wl-core-1.1.2.tgz#01294e86a892b89280520ca2afa2162c9a07044e"
+  integrity sha512-nESKlF28ljjBDE76Ge7TR3ByhF7hg1FIZy59SfHf6Sb/Pc0iJzoufOI7ky79BctJoN4H4rcJhSg0GPSRsriZCA==
   dependencies:
     big.js "^5.2.2"
     dayjs "^1.8.25"
