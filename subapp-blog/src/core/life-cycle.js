@@ -1,17 +1,17 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import App from "./App.vue";
-import store from "./store";
-import selfRoutes from "./router/routes";
+import App from "@/App.vue";
+import store from "@/store";
+import selfRoutes from "@/router/routes";
 
 /**
  * @name 导入自定义路由匹配方法
  */
-import routeMatch from "./router/routes-match";
+import routeMatch from "@/router/routes-match";
 /**
  * @name 导入官方通信方法
  */
-import appStore from "./utils/app-store";
+import appStore from "@/utils/app-store";
 
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 let router = null;

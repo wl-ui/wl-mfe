@@ -13,9 +13,6 @@
           <el-scrollbar class="wl-scroll">
             <!-- qiankun2.0  container 模式-->
             <div id="subapp-viewport" class="app-view-box"></div>
-            <!-- qiankun1.0  render 模式-->
-            <div v-html="appContent" class="app-view-box"></div>
-            <div v-if="loading" class="subapp-loading"></div>
           </el-scrollbar>
         </div>
       </div>
@@ -34,10 +31,6 @@ export default {
   components: {
     TheMenu,
     TheNav
-  },
-  props: {
-    loading: Boolean,
-    appContent: String
   },
   computed: {
     hasToken() {

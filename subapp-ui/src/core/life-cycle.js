@@ -1,13 +1,17 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import App from "./App.vue";
-import store from "./store";
-import selfRoutes from "./router/routes";
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import App from "@/App.vue";
+import store from "@/store";
+import selfRoutes from "@/router/routes";
 
+/**
+ * @name 导入自定义路由匹配方法
+ */
+import routeMatch from "@/router/routes-match";
 /**
  * @name 导入官方通信方法
  */
-import appStore from "./utils/app-store";
+import appStore from "@/utils/app-store";
 
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 let router = null;
@@ -24,8 +28,11 @@ const lifeCycle = () => {
      * @description  bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发
      * @description 通常我们可以在这里做一些全局变量的初始化，比如不会在 unmount 阶段被销毁的应用级别的缓存等
      */
-    async bootstrap() {
-
+    async bootstrap(props) {
+      console.log('props:', props)
+      /* props.emits.forEach(i => {
+        Vue.prototype[`$${i.name}`] = i;
+      }); */
     },
     /**
      * @name 实例化微应用
@@ -63,18 +70,13 @@ const lifeCycle = () => {
  * @description {Array} routes 主应用请求获取注册表后，从服务端拿到路由数据
  * @description {String} 子应用路由前缀 主应用请求获取注册表后，从服务端拿到路由数据
  */
-const render = ({ routerBase, container } = {}) => {
-  Vue.config.productionTip = false;
-  router = new VueRouter({
-    base: __qiankun__ ? routerBase : "/",
-    mode: "history",
-    routes: selfRoutes
+const render = ({ routes, routerBase, container } = {}) => {
+  // Vue.config.productionTip = false;
+  router = createRouter({
+    history: createWebHistory(__qiankun__ ? routerBase : "/"),
+    routes: __qiankun__ ? routeMatch(routes, routerBase) : selfRoutes
   });
-  instance = new Vue({
-    router,
-    store,
-    render: h => h(App)
-  }).$mount(container ? container.querySelector("#app") : "#app");
+  instance = createApp(App).use(router).use(store).mount(container ? container.querySelector("#app") : "#app");
 };
 
 export { lifeCycle, render };

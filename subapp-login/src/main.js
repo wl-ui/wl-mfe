@@ -1,10 +1,10 @@
-import "./public-path";
-import { lifeCycle, render } from "./life-cycle";
+import "./core/public-path";
+import { lifeCycle, render } from "./core/life-cycle";
 
 /**
  * @name 统一注册插件
  */
-import './install';
+import './core/install';
 
 /**
  * @name 导出微应用生命周期
