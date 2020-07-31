@@ -57,15 +57,15 @@ export default {
     // 表单字段
     let loginForm = reactive({
       account: ref(""), // 账号
-      password: ref("") // 密码
+      password: ref(""), // 密码
     });
     // 表单验证逻辑
     let loginRules = reactive({
       account: [{ required: true, message: "请输入账号", trigger: "blur" }],
-      password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
     });
     // 登录逻辑
-    const handleLogin = async name => {
+    const handleLogin = async (name) => {
       // 登录表单验证
       const _va_login = await loginValidate(name, ctx);
       // 验证通过调用登陆接口
@@ -73,7 +73,7 @@ export default {
       // 整理接口参数
       const _data = {
         account: loginForm.account,
-        password: loginForm.password
+        password: loginForm.password,
       };
       // 请求接口
       const { status, res } = await loginSubmit(_data);
@@ -81,7 +81,7 @@ export default {
       if (!status) {
         ctx.$wlMessage({
           type: "error",
-          message: "登录失败"
+          message: "登录失败",
         });
         return;
       }
@@ -89,7 +89,7 @@ export default {
       loginedTodo(res.headers.authorization);
       ctx.$wlMessage({
         type: "success",
-        message: res.data.message
+        message: res.data.message,
       });
     };
     return {
@@ -98,9 +98,9 @@ export default {
       loginForm,
       loginRules,
       // 方法开始
-      handleLogin
+      handleLogin,
     };
-  }
+  },
 };
 
 /**
@@ -111,7 +111,7 @@ const getBingHpImage = () => {
     format: "js",
     idx: 0,
     n: 8,
-    mkt: "zh-CN"
+    mkt: "zh-CN",
   };
   return getBingHpImageApi(_default_bingimg_params);
 };
@@ -121,8 +121,8 @@ const getBingHpImage = () => {
  * @param {Object} ctx 上下文
  */
 const loginValidate = (formName, ctx) => {
-  return new Promise(resolve => {
-    ctx.$refs[formName].validate(valid => {
+  return new Promise((resolve) => {
+    ctx.$refs[formName].validate((valid) => {
       resolve(valid);
     });
   });
@@ -130,22 +130,22 @@ const loginValidate = (formName, ctx) => {
 /**
  * @name 登录接口提交
  */
-const loginSubmit = data => {
+const loginSubmit = (data) => {
   return new Promise((resolve, reject) => {
     loginApi(data)
-      .then(res => {
+      .then((res) => {
         let _success = res.data.code === 200;
         let _res = { status: _success, res };
         _success ? resolve(_res) : reject(_res);
       })
-      .catch(err => reject({ status: false, res: err }));
+      .catch((err) => reject({ status: false, res: err }));
   });
 };
 /**
  * @name 登录成功后逻辑
  * @param {String} token token
  */
-const loginedTodo = token => {
+const loginedTodo = (token) => {
   // 将token存入本地
   Storage.set("token", token);
   window?.location?.reload?.();
@@ -170,7 +170,7 @@ const loginedTodo = token => {
     height: 320px;
     padding: 15px;
     background: rgba(245, 245, 245, 0.6);
-    box-shadow: 0px 0px 4px 6px #f3f3f3;
+    box-shadow: inset 0px 0px 11px 0px #fff;
 
     .login-button {
       padding-top: 20px;

@@ -25,7 +25,7 @@ function routeMatch(
         try {
           let routerItem = {
             path: _url, // 路由路径名
-            component: () => import(`@/views${_url}/index.vue`) // 路由映射真实视图路径
+            component: () => import(/* webpackChunkName: "[request]" */`@/views${_url}/index.vue`) // 路由映射真实视图路径
           };
           routerBox.push(routerItem);
         } catch (err) {
