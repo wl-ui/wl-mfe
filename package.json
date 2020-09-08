@@ -8,6 +8,7 @@
         "yinit": "node config/install.js yarn",
         "serve": "node config/start.js",
         "build": "node config/build.js",
+        "deploy": "node config/deploy.js",
         "lint": "vue-cli-service lint"
     }
 }
