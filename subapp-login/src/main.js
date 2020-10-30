@@ -17,3 +17,10 @@ export { bootstrap, mount, unmount };
  */
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 __qiankun__ || render();
+
+
+/**
+ * @name 测试go.js
+ */
+import goJs from "@/demo-flow/go"
+console.log(goJs); 

@@ -11,12 +11,17 @@
 
 ## 项目启动
 ```js
-npm run cinit    // 使用cnpm下载依赖，推荐cinit节省下载时间
+npm run yinit    // 使用yarn下载依赖，推荐
+npm run cinit    // 使用cnpm下载依赖
 npm run init     // 或 使用npm下载依赖
 
 npm run serve    // 运行全部项目
+npm run serve y  // yarn运行全部项目
+yarn serve y     // yarn运行全部项目
 
 npm run build     // 打包全部项目
+npm run build y   // 打包全部项目
+yarn build y      // 打包全部项目
 ```
 注意：如果下载报错，报 bin/sh 找不到start命令，那你可能是mac or linux，那就进入目录一个一个下载运行吧。   
 另：执行批量服务耗时较久，请耐心等待，init与build成功会在控制台提示，serve稍加等待或刷新浏览器即可。

@@ -6,10 +6,11 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const { log } = require('./utils/utils'); // 用于美化控制点打印
 const sub_app_ath = path.resolve();
-const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|master|subapp/.test(i));
+const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|config|master|subapp/.test(i));
 
-console.log(`即将进入所有模块并下载依赖：${JSON.stringify(sub_apps)} ing... 批量下载所有项目依赖推荐使用 npm run cinit 或 npm run yinit`)
+log.blue(`即将进入所有模块并下载依赖：${JSON.stringify(sub_apps)} ing... 批量下载所有项目依赖推荐使用 npm run cinit 或 npm run yinit`)
 
 const exec = util.promisify(require('child_process').exec);
 // npm 源
@@ -19,17 +20,17 @@ let registry_script = registry === 'cnpm' ? 'cnpm install' : registry === 'yarn'
 function install() {
   sub_apps.forEach(async i => {
     if (!fs.existsSync(`${i}/package.json`)) {
-      console.log(`${i} 应用缺少package.json文件，将跳过此应用`)
+      log.error(`${i} 应用缺少package.json文件，将跳过此应用`)
       return false;
     }
     if (fs.existsSync(`${i}/node_modules`)) {
-      console.log(`${i} 应用已检测到node_modules目录，将跳过此应用`)
+      log.green(`${i} 应用已检测到node_modules目录，将跳过此应用`)
       return false;
     }
-    console.log(`${i} 开始下载，耗时较久请耐心等待...`)
+    log.blue(`${i} 开始下载，耗时较久请耐心等待...`)
     const { stdout, stderr } = await exec(registry_script, { cwd: path.resolve(i) });
-    console.log(i, 'success', stdout)
-    console.error(i, 'error', stderr)
+    log.cyan(i, 'success', stdout)
+    log.red(i, 'error', stderr)
   });
 };
 install()
