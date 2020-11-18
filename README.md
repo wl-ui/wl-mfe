@@ -16,12 +16,12 @@ npm run cinit    // 使用cnpm下载依赖
 npm run init     // 或 使用npm下载依赖
 
 npm run serve    // 运行全部项目
-npm run serve y  // yarn运行全部项目
 yarn serve y     // yarn运行全部项目
 
 npm run build     // 打包全部项目
-npm run build y   // 打包全部项目
 yarn build y      // 打包全部项目
+
+npm run publish   // 执行发布脚本
 ```
 注意：如果下载报错，报 bin/sh 找不到start命令，那你可能是mac or linux，那就进入目录一个一个下载运行吧。   
 另：执行批量服务耗时较久，请耐心等待，init与build成功会在控制台提示，serve稍加等待或刷新浏览器即可。
@@ -32,6 +32,7 @@ yarn build y      // 打包全部项目
 - [x] 子应用构建
 - [x] 微应用间通信
 - [x] 跨应用通信与vuex结合
+- [x] 发布上线
 
 ## 主应用基座构建
 主应用需要用到elementui，暂时使用vue2.0+qiankun2.0版本。vue3.0beta体验在下面【子应用构建】章节
@@ -727,8 +728,91 @@ export default {
 };
 </script>
 ```
+## 发布上线
+
+### 使用脚本文件提高发布效率
+在根目录执行`npm run publish`会执行发布脚本，根据提示选择要发布到的服务器和要发布的应用，按指示选择后回车执行即可。
+注意为保持发布脚本的精简，默认你要发布的应用已经打包出了dist目录。
+
+### 常规多端口nginx配置
+根据`qiankun`的子应用注册规则，给每个子应用分配一个端口，nginx正常配置监听多个端口即可。
+详细配置见`_nginx`目录下`general-port.conf`
+
+### 双端口nginx配置
+有些项目应用场景及客户要求限制，无法根据子应用的数量无节制的开放端口，因此尝试将主应用独立一个端口，子应用共用一个端口的nginx配置。
+详细配置见`_nginx`目录下`dual-port.conf`
+
+> 使用双端口nginx配置需要对前面教程里的配置做部分改动
+#### 修改主应用中registerMicroApps注册子应用的数据
+```js
+ registerMicroApps(
+    [
+       {
+        name: 'subapp-ui', // 子应用app name 推荐与子应用的package的name一致
+        entry: 'http://192.168.1.100:2751/ui', // 子应用的入口地址
+        container: '#yourContainer', // 挂载子应用内容的dom节点 `# + dom id`【见上面app.vue】
+        activeRule: '/ui', // 子应用的路由前缀
+      },
+    ],
+ )
+```
+>注意: entry由端口地址变成了端口地址+此子应用的路径（//localhost:2751/ui）。且注意这个/ui路径后面要讲到
+
+#### 修改子应用
+1. 取消public-path.js，不再使用这个打包路径，下面这段代码删除
+```js
+if (window.__POWERED_BY_QIANKUN__) {
+  __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
+}
+```
+2. 修改vue.config.js文件publicPath字段,并和注册时的entry保持一致
+```js
+module.exports = {
+  publicPath: 'http://192.168.1.100:2751/ui'
+  ...
+}
+```
+3. 子应用的路由前缀应为‘/ui’，和前面两个保持一致
+
+> 至此即可通过nginx的配置实现一个端口下对所有子应用资源进行匹配转发。（见：_nginx/dual-port.conf）
+
 到这里已经完成了一个简单使用的 vue3.0 + qiankun2.0 微前端应用实践，快来上手试试吧！
 项目地址：[Github](https://github.com/wl-ui/wl-mfe);
+
+### 单端口nginx配置
+需求场景承接双端口配置，更近一步，有些极端发布环境只给开放一个端口，或者禁止开放跨域要求主应用和所有子应用做成同域！
+详细配置见`_nginx`目录下`single-port.conf`. （单端口思路大致如此，暂未进行测试）
+
+#### 修改主应用中registerMicroApps注册子应用的数据
+```js
+ registerMicroApps(
+    [
+       {
+        name: 'subapp-ui', // 子应用app name 推荐与子应用的package的name一致
+        entry: 'http://192.168.1.100:2750/ui', // 子应用的入口地
+        container: '#yourContainer', // 挂载子应用内容的dom节点 `# + dom id`【见上面app.vue】
+        activeRule: '/ui', // 子应用的路由前缀
+      },
+    ],
+ )
+```
+>注意: entry由端口地址变成了主应用端口地址+此子应用的路径（//localhost:2750/ui）。注意和双端口差别
+
+#### 修改子应用
+基本和双端口一直，唯一的区别是publicPath变成了主应用端口+子应用路径
+```js
+module.exports = {
+  publicPath: 'http://192.168.1.100:2750/ui'
+  ...
+}
+```
+> 至此即可通过nginx的配置实现主子应用同端口。（见：_nginx/single-port.conf）
+
+#### 单端口配置虽未测试但可预见的问题
+1. 可能造成qiankun检查不到子应用导出的生命周期
+2. 可能造成在子应用路由中刷新变成独立运行子应用
+3. 可能进入子应用却未进入主应用造成白屏
+> 这些问题如果发生，可通过调整nginx配置等来实现单端口运行主+子应用。因为这是被理论和实践皆已证明的。
 
 ## 注意事项
 1. 在主应用中使用window.history.pushState();跳转，在vue子应用中，使用router-link跳转会报错；使用router.push()会造成刷新；使用router.replace无异常

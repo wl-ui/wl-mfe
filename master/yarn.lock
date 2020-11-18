@@ -756,7 +756,14 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.10.5":
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
+  integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.9.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
   integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
@@ -4456,10 +4463,10 @@ import-from@^2.1.0:
   dependencies:
     resolve-from "^3.0.0"
 
-import-html-entry@^1.7.0:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/import-html-entry/-/import-html-entry-1.7.3.tgz#9c61234588b81abffc0896e0f8f4adabd8eabd6a"
-  integrity sha512-jWXK2gY61bC4XxUvVh8z+MGhQpBKBWmYyC+22scchwNky0HitTq+yDDTgVKSSoL/Ei0dh2lHGECdPwkHq0rKGQ==
+import-html-entry@^1.9.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/import-html-entry/-/import-html-entry-1.10.0.tgz#23092ef650fe5041a7802d8562f5681f0699d657"
+  integrity sha512-JNINPazMpBjjO/eYd/P2G7CC11nssuV2WuNKDd/9wGLoqnU3QJjpITlfNIbDvuB31NB88kVa7VHmFkM1JZAOcg==
   dependencies:
     "@babel/runtime" "^7.7.2"
 
@@ -6801,15 +6808,15 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qiankun@^2.0.15:
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.0.15.tgz#61a452080f9d31d404c2e40e23500bd3189d0038"
-  integrity sha512-raFoqwJpZvozd7S1oyYOLsgvnpFtH9xLQff5U67yD1TtvLgMOBp9uYrpN0q682+WBPZ7x3TWYoKTQG+IAXLcEg==
+qiankun@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.2.1.tgz#64ee43fa1cf60948bfeb2c197c4e8467e43a0c19"
+  integrity sha512-rSIZmBNdIRperqgZBspfwxD7S/XJOdzc+xAie8rFTl8sqUpJ23I7uTHpRT0plZm6Qg35mHUz7JwriLvrzvW8SQ==
   dependencies:
-    "@babel/runtime" "^7.5.5"
-    import-html-entry "^1.7.0"
+    "@babel/runtime" "^7.10.5"
+    import-html-entry "^1.9.0"
     lodash "^4.17.11"
-    single-spa "^5.3.1"
+    single-spa "^5.6.1"
     tslib "^1.10.0"
 
 qs@6.7.0:
@@ -7472,10 +7479,10 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-single-spa@^5.3.1:
-  version "5.5.1"
-  resolved "https://registry.yarnpkg.com/single-spa/-/single-spa-5.5.1.tgz#2d9bc2155e3698dab1a1ec97e94e33de193db53b"
-  integrity sha512-cGIQN5u4GQVVOSSbYdPM+a48HmZmbT64S/aLZ5tBM2keWHfZkKF6+NyfMXvW3ZQ3xs4Ugs5st+ZxgmAO3e/yCw==
+single-spa@^5.6.1:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/single-spa/-/single-spa-5.8.0.tgz#edfa0ab04e1fafbc4e1a46a110e1a692a6f1af88"
+  integrity sha512-lLjcRuljtaprvN0LRBf8358awAjWU29II1y20yqmuablGYXw0RIpYDWDl+oLMS5ZzTAJk2t7L1NY47LFP5Qw/Q==
 
 slash@^1.0.0:
   version "1.0.0"

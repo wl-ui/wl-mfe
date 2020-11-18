@@ -9,6 +9,7 @@
         "serve": "node config/start.js",
         "build": "node config/build.js",
         "deploy": "node config/deploy.js",
+        "publish": "node config/deploy.js",
         "lint": "vue-cli-service lint"
     }
 }
