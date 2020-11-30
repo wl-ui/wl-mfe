@@ -773,8 +773,18 @@ module.exports = {
 }
 ```
 3. 子应用的路由前缀应为‘/ui’，和前面两个保持一致
+```js
+const render = ({ routerBase } = {}) => {
+  router = new VueRouter({
+    base: __qiankun__ ? routerBase : "/",
+    mode: "history",
+    routes: []
+  });
+```
 
-> 至此即可通过nginx的配置实现一个端口下对所有子应用资源进行匹配转发。（见：_nginx/dual-port.conf）
+4. 配置nginx（见：_nginx/dual-port.conf）
+
+> 至此即可通过nginx的配置实现一个端口下对所有子应用资源进行匹配转发。
 
 到这里已经完成了一个简单使用的 vue3.0 + qiankun2.0 微前端应用实践，快来上手试试吧！
 项目地址：[Github](https://github.com/wl-ui/wl-mfe);
