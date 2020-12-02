@@ -1,4 +1,4 @@
-import "./core/public-path";
+// import "./core/public-path";
 import { lifeCycle, render } from "./core/life-cycle";
 
 /**
@@ -22,5 +22,5 @@ __qiankun__ || render();
 /**
  * @name 测试go.js
  */
-import "@/demo-flow/go"
-console.log(window.go);
+// import "@/demo-flow/go"
+// console.log(window.go);

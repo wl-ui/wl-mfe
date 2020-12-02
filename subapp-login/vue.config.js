@@ -4,7 +4,6 @@ const { name, port } = require("./package");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-const dev = process.env.NODE_ENV === "development";
 module.exports = {
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
@@ -13,7 +12,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: dev ? `//localhost:${port}` : "/",
+  publicPath: "http://47.98.136.80:2751/login",
   outputDir: "dist",
   assetsDir: "static",
   filenameHashing: true,

@@ -2,15 +2,15 @@ import http from "./__http__"
 
 // 1获取bing壁纸接口
 const getBingHpImageApi = (params) => http.get({
-  baseURL: '',
-  url: '/Bing/HPImageArchive.aspx',
+  baseURL: '/Bing',
+  url: '/HPImageArchive.aspx',
   params
 })
 
 // 2登录接口
-const loginApi = (data) => http.post({
+const loginApi = (params) => http.get({
   url: '/Api/Login',
-  data
+  params
 })
 
 export {

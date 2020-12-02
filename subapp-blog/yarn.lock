@@ -8884,10 +8884,10 @@ wide-align@^1.1.0:
   dependencies:
     string-width "^1.0.2 || 2"
 
-wl-core@^1.0.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/wl-core/-/wl-core-1.1.6.tgz#20c4a61a9c698054297af5330b8d1bd202ad6c44"
-  integrity sha512-Pq6lvduyt1n7q7Z6xXANJlybHYw2xZtuLGAgIfYU6tJBU1Efx5zE5S5Ro5cxotGSseFkBmzCpUPcsfsmTQ1Ecw==
+wl-core@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/wl-core/-/wl-core-1.1.7.tgz#4330009268ddfbc6a67927067f247084139c28d3"
+  integrity sha512-STm41ixiR3Envja2ykalSEgu2ZkYq5EUcwkA7d1OZ7LAZ7w+I0YxRvS7ab/+1paIibuQ/ICzBUDrx4KNHL5WEw==
   dependencies:
     big.js "^5.2.2"
     dayjs "^1.8.25"

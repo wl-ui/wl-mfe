@@ -7,7 +7,7 @@ const subApps = [
     module: "subapp-ui",
     defaultRegister: true,
     devEntry: "//localhost:6751",
-    depEntry: "http://ui.mfe.wlui.com.cn/",
+    depEntry: "http://47.98.136.80:2751/ui",
     routerBase: "/ui",
     children: [
       {
@@ -29,7 +29,7 @@ const subApps = [
     module: "subapp-blog",
     defaultRegister: false,
     devEntry: "//localhost:6752",
-    depEntry: "http://blog.mfe.wlui.com.cn",
+    depEntry: "http://47.98.136.80:2751/blog",
     routerBase: "/blog",
     children: [
       {

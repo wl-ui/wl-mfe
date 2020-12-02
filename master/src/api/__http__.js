@@ -5,7 +5,7 @@ import { Message } from "element-ui";
 
 // 配置项
 const options = {
-  axiosOptions: { baseURL: 'http://localhost:3700/' },
+  axiosOptions: { baseURL: '/nginx' },
   requestInterceptorSuccessCb: config => {
     let token = Storage.get("token");
     if (token) config.headers.Authorization = token;

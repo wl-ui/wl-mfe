@@ -13,7 +13,7 @@ try {
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const { log } = require('./utils/utils'); // 用于美化控制点打印
+const { log } = require('./utils/log'); // 用于美化控制点打印
 const sub_app_ath = path.resolve();
 const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|master|subapp/.test(i));
 

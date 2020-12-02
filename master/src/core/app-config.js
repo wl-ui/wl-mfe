@@ -9,7 +9,7 @@ const noAuthApps = [
     module: "subapp-login",
     defaultRegister: true,
     devEntry: "//localhost:2753",
-    depEntry: "http://login.mfe.wlui.com.cn/",
+    depEntry: "http://47.98.136.80:2751/login",
     routerBase: "/login",
     data: [
       {

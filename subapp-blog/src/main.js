@@ -1,4 +1,4 @@
-import "./core/public-path";
+// import "./core/public-path";
 import { lifeCycle, render } from "./core/life-cycle";
 
 /**

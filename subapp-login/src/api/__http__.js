@@ -2,7 +2,7 @@ import Http from "wl-http"
 
 // 配置项
 const options = {
-  axiosOptions: { baseURL: 'http://localhost:3700/' },
+  axiosOptions: { baseURL: '/nginx' },
   requestInterceptorSuccessCb: config => config,
   responseInterceptorSuccessCb: res => res,
   responseInterceptorErrorCb: err => err,

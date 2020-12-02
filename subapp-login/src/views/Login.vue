@@ -6,14 +6,25 @@
     <div class="login-form-box">
       <el-form :model="loginForm" :rules="loginRules" ref="login-form">
         <el-form-item label="账号" prop="account">
-          <el-input v-model="loginForm.account" placeholder="请输入账号"></el-input>
+          <el-input
+            v-model="loginForm.account"
+            placeholder="请输入账号"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="loginForm.password" placeholder="请输入账号"></el-input>
+          <el-input
+            v-model="loginForm.password"
+            placeholder="请输入账号"
+          ></el-input>
         </el-form-item>
       </el-form>
       <div class="align-right login-button">
-        <el-button type="primary" class="width-full" @click="handleLogin('login-form')">立即登录</el-button>
+        <el-button
+          type="primary"
+          class="width-full"
+          @click="handleLogin('login-form')"
+          >立即登录</el-button
+        >
       </div>
       <div class="login-link-box">
         <div>立即注册</div>
@@ -43,11 +54,16 @@ export default {
     let bgImageList = reactive([]);
     // 随机取用一张背景图
     let bgImage = ref("");
-    getBingHpImage().then(({ data }) => {
+    const formData = {
+      format: "js",
+      idx: 0,
+      n: 1,
+    };
+    getBingHpImage(formData).then(({ data }) => {
       bgImageList = data?.images;
       if (DataType.isArray(bgImageList)) {
         let _random_num = Math.floor(Math.random() * bgImageList.length);
-        bgImage.value = `https://cn.bing.com/${bgImageList[_random_num].url}`;
+        bgImage.value = `https://www.bing.com/${bgImageList[_random_num].url}`;
       }
     });
 
