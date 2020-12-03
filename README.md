@@ -738,7 +738,7 @@ export default {
 根据`qiankun`的子应用注册规则，给每个子应用分配一个端口，nginx正常配置监听多个端口即可。
 详细配置见`_nginx`目录下`general-port.conf`
 
-### 双端口nginx配置
+### 双端口nginx配置（git切换到dual-port分支）
 有些项目应用场景及客户要求限制，无法根据子应用的数量无节制的开放端口，因此尝试将主应用独立一个端口，子应用共用一个端口的nginx配置。
 详细配置见`_nginx`目录下`dual-port.conf`
 
@@ -784,7 +784,17 @@ const render = ({ routerBase } = {}) => {
 
 4. 配置nginx（见：_nginx/dual-port.conf）
 
+#### 此项目部署阿里云练手教程
+1. 将全部微应用和config、_server应用install
+2. 打包所有微应用
+3. 将config/deploy.js的服务器ip账号密码端口路径改为你的
+4. 在根目录执行npm run publish选择服务器和子应用，后点击回车部署到服务器
+5. 登陆服务器，将_nginx/wl-mfe.conf inclouds到你的nginx.conf重启nginx使其生效
+6. 将_server复制到服务器中并使用pm2运行
+7. 检查服务器防火墙和安全组有没有开放2750,2751,3000端口
 > 至此即可通过nginx的配置实现一个端口下对所有子应用资源进行匹配转发。
+
+[双端口部署微前端线上预览](http://47.98.136.80:2750/)
 
 到这里已经完成了一个简单使用的 vue3.0 + qiankun2.0 微前端应用实践，快来上手试试吧！
 项目地址：[Github](https://github.com/wl-ui/wl-mfe);
