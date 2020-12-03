@@ -7,10 +7,10 @@
 exports.config = {
   // 阿里云服务器
   aliyun: {
-    host: '47.98.136.80',                            // 服务器ip
+    host: '47.2.122.80',                            // 服务器ip
     port: 22,                                          // 服务器端口
-    username: 'root',                                  // 服务器登录名
-    password: 'xiaomeiyu{}0218.',                                  // 服务器登录密码
+    username: 'ee',                                  // 服务器登录名
+    password: 'wqwe',                                  // 服务器登录密码
     path: '/usr/local/mfe/web/'                        // 要发布到的服务器路径，你的所有微应用上层目录，脚本会自动在后面拼上一层subapp名作为每个微应用的目录
   },
   // 腾讯服务器
