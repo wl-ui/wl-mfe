@@ -16,14 +16,34 @@ const util = require('util');
 const { log } = require('./utils/utils'); // 用于美化控制点打印
 const sub_app_ath = path.resolve();
 const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^_server|master|subapp/.test(i));
-
-log.green(`即将进入所有模块并启动服务：${JSON.stringify(sub_apps)} ing...`)
-
+const inquirer = require('inquirer'); // 用于命令行交互
 const exec = util.promisify(require('child_process').exec);
 const maxBufferLength = 2000 * 1024;
 
-function start() {
-  sub_apps.forEach(async i => {
+/**
+ * @name 命令行交互配置项，选择要启动的模块
+ */
+const question = [
+  {
+    type: 'checkbox',
+    name: 'apps',
+    message: '请选择要启动的模块（按a全选，按回车直接运行全部）',
+    choices: sub_apps,
+  }
+]
+
+/**
+ * @name 选择指定模块并启动，如未选择全部运行
+ */
+inquirer.prompt(question).then(async (answer) => {
+  let sub_apps_ = answer.apps.length ? answer.apps : sub_apps
+  start(sub_apps_)
+});
+
+function start(sub_apps_) {
+  log.green(`即将进入模块并启动服务：${JSON.stringify(sub_apps_)} ing...`)
+
+  sub_apps_.forEach(async i => {
     if (!fs.existsSync(`${i}/package.json`)) {
       log.red(`${i} 应用缺少package.json文件，将跳过此应用`)
       return false;
@@ -41,7 +61,6 @@ function start() {
   const packageData = JSON.parse(packageJson);
   exec('start http://localhost:' + packageData.port);
 };
-start();
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
