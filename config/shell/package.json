@@ -1,0 +1,24 @@
+{
+  "name": "linux-deploy",
+  "version": "1.0.0",
+  "description": "机电2.0前端部署至linux服务器的脚步",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "add": "node add-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "autoconfig"
+  ],
+  "author": "weilan",
+  "license": "ISC",
+  "devDependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "inquirer": "^7.3.3",
+    "progress": "^2.0.3",
+    "ssh2-sftp-client": "^5.3.0"
+  }
+}

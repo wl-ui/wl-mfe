@@ -3,13 +3,14 @@ const path = require('path');
 const SftpClient = require('ssh2-sftp-client'); // 用于连接服务器
 const inquirer = require('inquirer'); // 用于命令行交互
 const ProgressBar = require('progress'); // 用于显示进度条
-const { config } = require('./env-configs/deploy'); // 用于连接服务器配置项
+const { config } = require('./config'); // 用于连接服务器配置项
 const servers = Object.keys(config); // 用于选择要发布到的服务器
-const sub_app_ath = path.resolve();
-const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^master|subapp/.test(i));  // 用于读取所有微应用
-const FileSystem = require('./utils/filesys');
+const file_path = '../nginx-1.18.0/html/'; // 打包文件所在路径
+const sub_app_ath = path.resolve(file_path);
+const sub_apps = fs.readdirSync(sub_app_ath).filter(i => /^master|subapp|3d|app/.test(i));  // 用于读取所有微应用
+const FileSystem = require('../utils/filesys');
 const fileSys = new FileSystem(); // 用于统一文件数量
-const { log } = require('./utils/utils'); // 用于美化控制点打印
+const { log } = require('../utils/utils'); // 用于美化控制点打印
 
 /**
  * @name 命令行交互配置项，选择要发布的模块
@@ -28,6 +29,7 @@ const question = [
         choices: sub_apps,
     }
 ]
+
 /**
  * @name 选择指定模块并发布
  */
@@ -41,11 +43,12 @@ inquirer.prompt(question).then(async (answer) => {
     // 整理所选要发布的微应用
 
     answer.apps.forEach(i => {
-        const from = path.join(__dirname, '../' + i + '/dist');
-        const to = active_server.path + i;
+        const from = path.join(__dirname, file_path + i);
+        const to = active_server.path;
         sftpSend(i, from, to, active_server)
     })
 });
+
 /**
  * @name sftp上传
  * @param {String} appName 应用模块名
