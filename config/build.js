@@ -33,9 +33,9 @@ inquirer.prompt(question).then(async (answer) => {
 
 const exec = util.promisify(require('child_process').exec);
 
-function build() {
-  log.green(`即将进入模块并打包：${JSON.stringify(sub_apps)} ing...`)
-  sub_apps.forEach(async i => {
+function build(sub_apps_) {
+  log.green(`即将进入模块并打包：${JSON.stringify(sub_apps_)} ing...`)
+  sub_apps_.forEach(async i => {
     log.blue(`${i} 开始打包,耗时较久请耐心等待...`)
     const { stdout, stderr } = await exec('yarn build', { cwd: path.resolve(i) });
     log.cyan(i, 'success', stdout)

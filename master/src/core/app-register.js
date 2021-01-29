@@ -2,12 +2,6 @@ import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, ini
 import store from "../store";
 
 /**
- * @name 导入render函数兼容qiakun1.0装载子应用方法，如果使用2.0container装载则不需要此方法,此处留着注释代码提供兼容qiankun1.0的示例
- * @description 此处留下注释代码仅为提供兼容qiankun1.0示例
- */
-// import render from './render';
-
-/**
  * @name 导入想传递给子应用的方法，其他类型的数据皆可按此方式传递
  * @description emit建议主要为提供子应用调用主应用方法的途径
  */
@@ -49,11 +43,10 @@ const qianKunStart = (list) => {
    */
   let apps = []; // 子应用数组盒子
   let defaultApp = null; // 默认注册应用路由前缀
-  let isDev = process.env.NODE_ENV === 'development'; // 根据开发环境|线上环境加载不同entry
   list.forEach(i => {
     apps.push({
       name: i.module,
-      entry: isDev ? i.devEntry : i.depEntry,
+      entry: i.entry,
       container: appContainer,
       activeRule: i.routerBase,
       props: { ...props, routes: i.data, routerBase: i.routerBase }

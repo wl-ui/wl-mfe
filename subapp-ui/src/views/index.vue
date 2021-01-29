@@ -3,15 +3,20 @@
     <img alt="Vue logo" src="@/assets/logo.png" />
     <div class="msg-box">
       <div class="msg-title">这里是子应用：</div>
-      <div class="msg-context">{{selfMsg}}</div>
+      <div class="msg-context">{{ selfMsg }}</div>
     </div>
     <div class="msg-box">
       <div class="msg-title">来自其他微应用的消息：</div>
-      <div class="msg-context">{{vuexMsg}}</div>
+      <div class="msg-context">{{ vuexMsg }}</div>
     </div>
     <div class="msg-box">
       <div class="msg-ipt-box">
-        <input class="msg-ipt" type="text" v-model="formMsg" placeholder="请输入你想广播的话" />
+        <input
+          class="msg-ipt"
+          type="text"
+          v-model="formMsg"
+          placeholder="请输入你想广播的话"
+        />
       </div>
       <div class="msg-btn-box">
         <button class="msg-btn" @click="handleVuexMsgChange">发送广播</button>
@@ -30,7 +35,7 @@ export default {
     /**
      * @name 通过getCurrentInstance方法得到当前上下文
      */
-    const { ctx } = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
     /**
      * @name 定义一个初始数据
      */
@@ -38,12 +43,11 @@ export default {
     /**
      * @name 定义一个计算属性，返回vuex中的数据
      */
-    const vuexMsg = computed(() => ctx.$store.getters.msg);
+    const vuexMsg = computed(() => proxy.$store.getters.msg);
     /**
      * @name 定义一个表单元素v-model绑定的变量
      */
     const formMsg = ref("");
-
     /**
      * @name 定义一个广播事件
      */
@@ -52,7 +56,7 @@ export default {
        * @name 注意：在setup内部使用定义的变量，需要用**.value取值！
        */
       setState({
-        msg: formMsg.value
+        msg: formMsg.value,
       });
     };
 
@@ -60,9 +64,9 @@ export default {
       selfMsg,
       vuexMsg,
       formMsg,
-      handleVuexMsgChange
+      handleVuexMsgChange,
     };
-  }
+  },
 };
 </script>
 

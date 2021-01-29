@@ -25,7 +25,7 @@ import qianKunStart from "./app-register"
 /**
  * @name 导入无需服务端获取的微应用
  */
-import noAuthApps from "./app-config"
+import { noAuthApps, nextAuthApps } from "./app-config"
 
 /**
  * @name 请求获取服务端子应用注册表
@@ -59,7 +59,7 @@ const getAppConfigs = () => {
     /**
      * @name 启用qiankun微前端应用，已启动过用手动加载，未启动过正常注册
      */
-    qianKunStart(_res);
+    qianKunStart([..._res, ...nextAuthApps]);
   })
 }
 

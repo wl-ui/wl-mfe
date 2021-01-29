@@ -30,7 +30,7 @@ export default {
     /**
      * @name 通过getCurrentInstance方法得到当前上下文
      */
-    const { ctx } = getCurrentInstance();
+    const { proxy } = getCurrentInstance();
     /**
      * @name 定义一个初始数据
      */
@@ -38,7 +38,7 @@ export default {
     /**
      * @name 定义一个计算属性，返回vuex中的数据
      */
-    const vuexMsg = computed(() => ctx.$store.getters.msg);
+    const vuexMsg = computed(() => proxy.$store.getters.msg);
     /**
      * @name 定义一个表单元素v-model绑定的变量
      */
