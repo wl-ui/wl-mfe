@@ -46,7 +46,7 @@ services:
       - master
   # subapp-ui配置
   ui:
-    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-login
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-ui
     container_name: subapp-ui
     restart: always
     environment:
