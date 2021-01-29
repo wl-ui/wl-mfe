@@ -1,0 +1,57 @@
+# by weilan in 2020.01.25 
+
+services:
+  nginx:
+    image: nginx
+    restart: always
+    container_name: nginx
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - "8080:80"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+  # 主应用配置
+  master:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-master
+    container_name: master
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2750:2750'
+  # subapp-blog配置
+  blog:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-blog
+    container_name: subapp-blog
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2752:2752'
+    depends_on:
+      - master
+  # subapp-login配置
+  login:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-login
+    container_name: subapp-login
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2753:2753'
+    depends_on:
+      - master
+  # subapp-ui配置
+  ui:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-login
+    container_name: subapp-ui
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2751:2751'
+    depends_on:
+      - master
