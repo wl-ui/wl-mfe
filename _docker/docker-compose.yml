@@ -13,45 +13,52 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+  # 服务端配置
+  wl-mfe.server:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-server
+    container_name: wl-mfe.server
+    restart: always
+    ports:
+      - '3700:3700'
   # 主应用配置
-  master:
+  wl-mfe.master:
     image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-master
-    container_name: master
+    container_name: wl-mfe.master
     restart: always
     environment:
       NODE_ENV: 'production'
     ports:
       - '2750:2750'
   # subapp-blog配置
-  blog:
+  wl-mfe.blog:
     image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-blog
-    container_name: subapp-blog
+    container_name: wl-mfe.subapp-blog
     restart: always
     environment:
       NODE_ENV: 'production'
     ports:
       - '2752:2752'
     depends_on:
-      - master
+      - wl-mfe.master
   # subapp-login配置
-  login:
+  wl-mfe.login:
     image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-login
-    container_name: subapp-login
+    container_name: wl-mfe.subapp-login
     restart: always
     environment:
       NODE_ENV: 'production'
     ports:
       - '2753:2753'
     depends_on:
-      - master
+      - wl-mfe.master
   # subapp-ui配置
-  ui:
+  wl-mfe.ui:
     image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-subapp-ui
-    container_name: subapp-ui
+    container_name: wl-mfe.subapp-ui
     restart: always
     environment:
       NODE_ENV: 'production'
     ports:
       - '2751:2751'
     depends_on:
-      - master
+      - wl-mfe.master
