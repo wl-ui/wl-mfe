@@ -1,6 +1,6 @@
 # by weilan in 2020.01.25 
-
-services:
+ version: '3'
+ services:
   # 服务端配置
   wl-mfe.server:
     container_name: wl-mfe.server
@@ -10,53 +10,27 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3700:3700'
-  # 主应用配置
-  wl-mfe.master:
-    container_name: wl-mfe.master
+  wl-mfe.web:
+    image: nginx
     restart: always
-    build: 
-      context: ./master
-      dockerfile: Dockerfile
+    container_name: nginx
     environment:
-      NODE_ENV: 'production'
+      - TZ=Asia/Shanghai
     ports:
-      - '2750:2750'
-  # subapp-blog配置
-  wl-mfe.blog:
-    container_name: wl-mfe.subapp-blog
-    restart: always
-    build: 
-      context: ./subapp-blog
-      dockerfile: Dockerfile
-    environment:
-      NODE_ENV: 'production'
-    ports:
-      - '2752:2752'
-    depends_on:
-      - wl-mfe.master
-  # subapp-login配置
-  wl-mfe.login:
-    container_name: wl-mfe.subapp-login
-    restart: always
-    build: 
-      context: ./subapp-login
-      dockerfile: Dockerfile
-    environment:
-      NODE_ENV: 'production'
-    ports:
-      - '2753:2753'
-    depends_on:
-      - wl-mfe.master
-  # subapp-ui配置
-  wl-mfe.ui:
-    container_name: wl-mfe.subapp-ui
-    restart: always
-    build: 
-      context: ./subapp-ui
-      dockerfile: Dockerfile
-    environment:
-      NODE_ENV: 'production'
-    ports:
-      - '2751:2751'
-    depends_on:
-      - wl-mfe.master
+      # nginx端口与宿主机端口映射
+      - "8080:80"
+      - "80:80"
+      - "443:443"
+      # 下面是各个微前端的端口映射
+      - "2750:2750"
+      - "2751:2751"
+      - "2752:2752"
+      - "2753:2753"
+    volumes:
+      # 挂载nginx配置
+      - ./_docker/nginx/default.conf:/etc/nginx/nginx.conf
+      # 挂载各个微前端静态资源
+      - ./master/dist/:/usr/local/web/master/
+      - ./subapp-blog/dist/:/usr/local/web/subapp-blog/
+      - ./subapp-login/dist/:/usr/local/web/subapp-login/
+      - ./subapp-ui/dist/:/usr/local/web/subapp-ui/

@@ -1,0 +1,62 @@
+# by weilan in 2020.01.25 
+
+services:
+  # 服务端配置
+  wl-mfe.server:
+    container_name: wl-mfe.server
+    restart: always
+    build: 
+      context: ./_server
+      dockerfile: Dockerfile
+    ports:
+      - '3700:3700'
+  # 主应用配置
+  wl-mfe.master:
+    container_name: wl-mfe.master
+    restart: always
+    build: 
+      context: ./master
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2750:2750'
+  # subapp-blog配置
+  wl-mfe.blog:
+    container_name: wl-mfe.subapp-blog
+    restart: always
+    build: 
+      context: ./subapp-blog
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2752:2752'
+    depends_on:
+      - wl-mfe.master
+  # subapp-login配置
+  wl-mfe.login:
+    container_name: wl-mfe.subapp-login
+    restart: always
+    build: 
+      context: ./subapp-login
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2753:2753'
+    depends_on:
+      - wl-mfe.master
+  # subapp-ui配置
+  wl-mfe.ui:
+    container_name: wl-mfe.subapp-ui
+    restart: always
+    build: 
+      context: ./subapp-ui
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2751:2751'
+    depends_on:
+      - wl-mfe.master

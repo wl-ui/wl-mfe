@@ -4,7 +4,8 @@
 项目地址：[wl-mfe](https://github.com/wl-ui/wl-mfe)
 
 微前端实战详细入门教程及解放方案请转至我另一篇文章：[微前端实战看这篇就够了 - Vue项目篇](https://juejin.im/post/5e1824296fb9a02fde20fec9)。   
-项目地址：[wl-micro-frontends [wl-qiankun]](https://github.com/hql7/wl-micro-frontends)  &&  [在线访问](http://mfe.wlui.com.cn/)
+项目地址：[wl-micro-frontends [wl-qiankun]](https://github.com/hql7/wl-micro-frontends)  &&  [在线访问](http://mfe.wlui.com.cn/)  
+部署教程：[使用各种姿势舒服的部署微前端项目](https://juejin.cn/post/6921649095610204173/)
 
 ### 最终效果
 ![wl-mfe](http://wlsy.oss-cn-hangzhou.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720200428174450.png)
