@@ -1,0 +1,39 @@
+# by weilan in 2020.01.25 
+ version: '3'
+ services:
+  IBP2.FE:
+    image: nginx
+    restart: always
+    container_name: nginx
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      # nginx端口与宿主机端口映射
+      - "8080:80"
+      - "80:80"
+      - "443:443"
+      # 下面是各个微前端的端口映射
+      - "6750:6750"
+      - "6759:6759"
+      - "6758:6758"
+      - "6752:6752"
+      - "6753:6753"
+      - "6755:6755"
+      - "6756:6756"
+      - "6754:6754"
+      - "6757:6757"
+      - "6751:6751"
+    volumes:
+      # 挂载nginx配置
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      # 挂载各个微前端静态资源
+      - ./master/dist/:/usr/local/future/web/master/
+      - ./subapp-admin/dist/:/usr/local/future/web/subapp-admin/
+      - ./subapp-books/dist/:/usr/local/future/web/subapp-books/
+      - ./subapp-device/dist/:/usr/local/future/web/subapp-device/
+      - ./subapp-login/dist/:/usr/local/future/web/subapp-login/
+      - ./subapp-mms/dist/:/usr/local/future/web/subapp-mms/
+      - ./subapp-order/dist/:/usr/local/future/web/subapp-order/
+      - ./subapp-user/dist/:/usr/local/future/web/subapp-user/
+      - ./subapp-video/dist/:/usr/local/future/web/subapp-video/
+      - ./subapp-webgl/dist/:/usr/local/future/web/subapp-webgl/

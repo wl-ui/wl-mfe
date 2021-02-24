@@ -1,0 +1,22 @@
+# by weilan in 2020.01.25 
+services:
+  wl-mfe.server:
+    image: registry.cn-qingdao.aliyuncs.com/wlui/wl-mfe-server
+    container_name: wl-mfe.server
+    restart: always
+    ports:
+      - '3700:3700'
+  wl-mfe.web:
+    image: registry.cn-zhangjiakou.aliyuncs.com/scanfuture/smartbuilding.fe:1.0.0
+    container_name: wl-mfe.web
+    restart: always
+    environment:
+      NODE_ENV: 'production'
+    ports:
+      - '2750:2750'
+      - "2751:2751"
+      - "2752:2752"
+    volumes:
+      # 挂载nginx配置
+      - ./nginx.conf:/etc/nginx/nginx.conf
+  
